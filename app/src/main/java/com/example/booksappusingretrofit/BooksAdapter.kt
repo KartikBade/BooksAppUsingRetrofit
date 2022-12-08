@@ -1,7 +1,10 @@
 package com.example.booksappusingretrofit
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +17,11 @@ class BooksAdapter: ListAdapter<VolumeInfo, BooksAdapter.BooksViewHolder>(DiffCa
         fun bind(volumeInfo: VolumeInfo) {
             binding.volumeInfo = volumeInfo
             binding.executePendingBindings()
+            binding.bookItemCard.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse("https://www.google.com/search?q=${volumeInfo.volumeInfo.title}")
+                binding.root.context.startActivity(intent)
+            }
         }
     }
 

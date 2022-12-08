@@ -22,7 +22,9 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.booksList.adapter = BooksAdapter()
         binding.searchButton.setOnClickListener {
-            viewModel.loadBooks(binding.searchQueryTextview.text.toString())
+            binding.searchQueryTextview.text?.let {
+                viewModel.loadBooks(binding.searchQueryTextview.text.toString())
+            }
         }
     }
 }
